@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Defis</title>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css" charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+
+  </head>
+  <body>
+    <div class="container-fluid red">
+      <img src="calendar.png" alt="calendrier" />
+
+      <div class="container">
+        <div class="row">
+          <div id="elem"></div>
+          <div id="detail"></div>
+
+          <script>
+        	function traiteResultat(){
+        		var data = JSON.parse(this.responseText);
+        		 for(var i = 0; i < data.items.length; i++) {
+               var a = document.createElement('a');
+                var elem = document.getElementById('elem');
+                a.className="col-md-3 item";
+                a.textContent= i+" " +data.items[i].summary;
+                elem.appendChild(a);
+                var divdetail = document.createElement('div');
+                var detail = document.getElementById('detail');
+                divdetail.className="col-md-3 itemDetail";
+                detail.appendChild(divdetail);
+                detail.style.display = "none";
+                divdetail.textContent=i+ " "+"Crée le"+ data.items[i].created + " Mis à jour le" + data.items[i].updated 
+                a.addEventListener("click",function(){detail.style.display = "block"});
+              	}
+                }
+
+              // function detaille(){
+              //  for(var i = 0; i < data.items[i].summary; i++) {
+              //    var divdetail = document.createElement('div');
+              //    var detail = document.getElementById('detail');
+              //    divdetail.className="col-md-3 item";
+              //    divdetail.textContent="data.items[i].kind";
+              //    detail.appendChild(divdetail);
+              //     }
+              //   }
+
+
+
+
+
+            	var requete = new XMLHttpRequest();
+            	requete.onload = traiteResultat;
+            	requete.onerror = function () {
+            	  console.log("Erreur : ");
+            	};
+
+            	requete.open("get", "data.json", true);
+            	requete.send();
+
+
+          </script>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

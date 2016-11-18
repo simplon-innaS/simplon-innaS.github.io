@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+	<button type="button" name="button" onclick="chargeAjax()"></button>
+	<script>
+
+	function traiteResultat(){
+
+		var data = JSON.parse(this.responseText);
+		console.log(data.items[0].etag);
+		 for(var i = 0; i < data.items.length; i++) {
+		     console.log(data.items[i].etag);
+		}
+	}
+	function chargeAjax(){
+	var requete = new XMLHttpRequest();
+	requete.onload = traiteResultat;
+	requete.onerror = function () {
+	  console.log("Erreur : ");
+	};
+
+	requete.open("get", "data.json", true);
+	requete.send();
+	}
+
+  </script>
+</body>
+</html>

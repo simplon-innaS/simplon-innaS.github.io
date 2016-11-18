@@ -1,0 +1,26 @@
+*{
+      font-family: 'PT Sans', sans-serif;
+      font-size: 20px;
+}
+body{
+  background-color: #80AAC9;
+}
+.red{
+  background-color: #DB1F26;
+  height: 300px;
+}
+img{
+  display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.item{
+  border: 8px solid #DB1F26;
+  height: 100px;
+  text-align: center;
+}
+.itemDetail{
+  border: 8px solid #DB1F26;
+  height: 300px;
+  text-align: center;
+}
